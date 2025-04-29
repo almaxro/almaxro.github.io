@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Postify - Crea posts virales para redes sociales con inteligencia artificial. Únete a la lista de espera." />
     <meta name="keywords" content="redes sociales, contenido viral, automatización, IA, marketing digital, lista de espera" />
-    <title>Postify - Acceso exclusivo - Lista de espera</title>
+    <title>Postify - Lista de espera</title>
     
     <!-- Preload de recursos críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
     
     <style>
+      /* Variables globales - Configuración de colores y estilos fundamentales */
       :root {
         --bg: #0f0f0f;
         --text: #f2f2f2;
@@ -26,108 +27,63 @@
         --card-bg: #1a1a1a;
         --shadow: 0 2px 5px rgba(0,0,0,0.3);
         --radius: 1rem;
+        --transition-normal: all 0.3s ease;
       }
 
-      /* Reset básico */
-      * {
+      /* Reset y estilos generales */
+      *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
 
-      /* Estilos de texto con gradiente */
+      html, body {
+        overflow-x: hidden;
+        width: 100%;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        max-width: 100%;
+        position: relative;
+        overflow-x: hidden;
+        width: 100%;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Efectos de texto con gradiente */
       .gradient-text {
         background: var(--gradient);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         background-clip: text;
+        -webkit-text-fill-color: transparent;
         color: transparent;
       }
 
-      /* Texto con degradado */
       .text-gradient {
         background: var(--text-gradient);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         background-clip: text;
+        -webkit-text-fill-color: transparent;
         color: transparent;
         background-size: 200% 200%;
         animation: gradientFlow 8s ease infinite;
       }
 
       @keyframes gradientFlow {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
       }
 
-      body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        background-color: var(--bg);
-        color: var(--text);
-        padding: 0;
-        line-height: 1.5;
-        overflow-x: hidden;
-        -webkit-text-size-adjust: 100%;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      header {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
-        z-index: 1000;
-        background: var(--primary);
-        padding: 1rem 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: var(--radius);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .logo {
-        color: white;
-        font-size: 1.2rem;
-        font-weight: 800;
-      }
-
-      .header-btn {
-        background-color: var(--accent);
-        color: white;
-        border: none;
-        padding: 0.6rem 1.2rem;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        -webkit-tap-highlight-color: transparent;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .header-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 122, 255, 0.3);
-      }
-
-      /* Contenedor principal */
+      /* Contenedor principal y efectos de fondo */
       .main {
         flex: 1;
         display: flex;
@@ -137,10 +93,12 @@
         min-height: 100vh;
         position: relative;
         overflow: hidden;
-        padding-top: 60px; /* Espacio para el header */
+        padding-top: 60px;
+        width: 100%;
+        overflow-x: hidden;
+        max-width: 100%;
       }
 
-      /* Efecto de degradado en el fondo */
       .bg-gradient {
         position: absolute;
         top: -300px;
@@ -163,6 +121,42 @@
         background: radial-gradient(circle, rgba(255, 174, 207, 0.1) 0%, rgba(181, 142, 255, 0.05) 50%, transparent 70%);
         z-index: -1;
         opacity: 0.7;
+      }
+
+      /* Efectos de luz circular */
+      .light-circle {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.6;
+        filter: blur(60px);
+      }
+
+      .light-circle-1 {
+        width: 300px;
+        height: 300px;
+        top: -100px;
+        right: -50px;
+        background: radial-gradient(circle, rgba(0, 122, 255, 0.3) 0%, rgba(0, 122, 255, 0.1) 50%, transparent 70%);
+        animation: float 15s ease-in-out infinite;
+      }
+
+      .light-circle-2 {
+        width: 250px;
+        height: 250px;
+        bottom: 20%;
+        left: -100px;
+        background: radial-gradient(circle, rgba(181, 142, 255, 0.25) 0%, rgba(181, 142, 255, 0.1) 50%, transparent 70%);
+        animation: float 12s ease-in-out infinite reverse;
+      }
+
+
+      @keyframes float {
+        0% { transform: translateY(0) translateX(0); }
+        33% { transform: translateY(20px) translateX(-10px); }
+        66% { transform: translateY(-10px) translateX(15px); }
+        100% { transform: translateY(0) translateX(0); }
       }
 
       /* Sección hero */
@@ -202,7 +196,6 @@
         animation: fadeSlideUp 0.8s ease-out 0.4s both;
       }
 
-      /* Animación para texto */
       @keyframes fadeSlideUp {
         0% {
           opacity: 0;
@@ -228,17 +221,13 @@
       }
 
       @keyframes badgePulse {
-        0% {
+        0%, 100% {
           transform: scale(1);
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         50% {
           transform: scale(1.05);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
       }
 
@@ -258,17 +247,13 @@
       }
 
       @keyframes pulse {
-        0% {
+        0%, 100% {
           transform: scale(1);
           opacity: 1;
         }
         50% {
           transform: scale(1.5);
           opacity: 0.7;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
         }
       }
 
@@ -293,11 +278,13 @@
         appearance: none;
         min-height: 44px;
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: var(--transition-normal);
       }
 
       .form-input:focus {
         outline: none;
         border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
       }
 
       .form-button {
@@ -310,7 +297,7 @@
         letter-spacing: 0.02em;
         font-weight: 700;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: var(--transition-normal);
         appearance: none;
         -webkit-tap-highlight-color: transparent;
         min-height: 44px;
@@ -318,17 +305,85 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 15px rgba(0, 120, 250, 0.3);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
       }
 
       .form-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 15px rgba(0, 122, 255, 0.3);
       }
+      
+      .form-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Estilos para campos de nombre y apellido en horizontal */
+.name-fields {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.name-fields .form-input {
+  flex: 1;
+  min-width: 0; /* Evita que los inputs se desborden */
+}
+
+      /* Estilos para el checkbox de privacidad */
+      .privacy-checkbox {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 1rem;
+        text-align: left;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .privacy-checkbox input[type="checkbox"] {
+        margin-right: 0.5rem;
+        margin-top: 0.2rem;
+        min-width: 16px;
+        min-height: 16px;
+        cursor: pointer;
+      }
+      
+      .privacy-checkbox label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        line-height: 1.4;
+      }
+      
+      .privacy-checkbox label a {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+      
+      /* Mensaje de error en el formulario */
+      .form-error {
+        color: #ff3b30;
+        font-size: 0.85rem;
+        text-align: left;
+        margin-top: 0.5rem;
+        animation: fadeIn 0.3s ease;
+        display: none;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
 
       .waitlist-note {
         font-size: 0.85rem;
         color: var(--text-secondary);
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         text-align: center;
         width: 100%;
         max-width: 450px;
@@ -377,21 +432,227 @@
         opacity: 0.7;
       }
 
+      /* Páginas legales */
+      #legal-pages {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg);
+        z-index: 1000;
+        overflow-y: auto;
+        padding: 2rem 1rem;
+      }
+      
+      .legal-page {
+        display: none;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      
+      .legal-page h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #007aff;
+      }
+      
+      .legal-content {
+        background-color: var(--card-bg);
+        border-radius: var(--radius);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .legal-content h2 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--accent);
+      }
+      
+      .legal-content h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--accent);
+        font-size: 1.1rem;
+      }
+      
+      .legal-content p {
+        margin-bottom: 1rem;
+      }
+      
+      .legal-content ul {
+        padding-left: 1.5rem;
+        margin-bottom: 1.2rem;
+        color: var(--text-secondary);
+      }
+      
+      .legal-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.5rem;
+        color: var(--text-secondary);
+      }
+      
+      .legal-content table th,
+      .legal-content table td {
+        text-align: left;
+        padding: 0.8rem 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .legal-content table th {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      /* Botones para páginas legales */
+      .legal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+      
+      .close-legal {
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: var(--transition-normal);
+      }
+      
+      .close-legal:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .back-button {
+        display: inline-block;
+        background: linear-gradient(90deg, #007aff, #b58eff);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: var(--radius);
+        font-weight: 600;
+        margin-top: 1.5rem;
+        border: none;
+        cursor: pointer;
+        min-height: 44px;
+        transition: var(--transition-normal);
+      }
+      
+      .back-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Estilos para notificaciones */
+      .notification {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0;
+        width: 90%;
+        max-width: 360px;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        padding: 24px;
+        text-align: center;
+        z-index: 9999;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      .notification.success {
+        border: 1px solid rgba(0, 122, 255, 0.3);
+      }
+      
+      .notification.error {
+        border: 1px solid rgba(255, 59, 48, 0.3);
+      }
+      
+      .notification.show {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      
+      .notification-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+      }
+      
+      .notification.success .notification-icon {
+        background: linear-gradient(45deg, #007aff, #5856d6);
+      }
+      
+      .notification.error .notification-icon {
+        background: linear-gradient(45deg, #ff3b30, #ff9500);
+        box-shadow: 0 8px 20px rgba(255, 59, 48, 0.3);
+      }
+      
+      .notification h3 {
+        color: #ffffff;
+        margin: 0 0 8px;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      
+      .notification p {
+        color: #d0d0d0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
       /* Desactivar animaciones en modo reducido de movimiento */
       @media (prefers-reduced-motion: reduce) {
         .hero h1,
         .hero p,
         .text-gradient,
         .exclusive-badge,
-        .spots-counter,
         .waitlist-form,
-        .waitlist-note {
-          animation: none;
+        .waitlist-note,
+        .light-circle,
+        .notification {
+          animation: none !important;
+          transition: none !important;
+        }
+        
+        .notification.show {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
         }
       }
 
-      /* MEDIA QUERIES OPTIMIZADAS */
-      
+      /* Partículas de fondo */
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -10;
+        background-color: transparent;
+        pointer-events: none;
+      }
+
+      /* Media Queries */
       /* Móviles muy pequeños (hasta 359px) */
       @media (max-width: 359px) {
         .hero h1 {
@@ -408,6 +669,7 @@
         
         .exclusive-badge {
           padding: 0.3rem 0.8rem;
+          margin-top: 0.1rem;
           margin-bottom: 1.5rem;
         }
         
@@ -430,6 +692,24 @@
           gap: 0.8rem;
           align-items: center;
         }
+        
+        .notification {
+          padding: 20px;
+          max-width: 85%;
+        }
+        
+        .notification-icon {
+          width: 50px;
+          height: 50px;
+        }
+        
+        .notification h3 {
+          font-size: 18px;
+        }
+        
+        .notification p {
+          font-size: 14px;
+        }
       }
       
       /* Móviles pequeños a medianos (360px - 480px) */
@@ -444,24 +724,10 @@
           margin-bottom: 2rem;
           padding: 0 0.5rem;
         }
-        
-        header {
-          padding: 0.7rem 1rem;
-        }
-        
-        .logo {
-          font-size: 1.1rem;
-        }
-        
-        .header-btn {
-          font-size: 0.85rem;
-          padding: 0.5rem 1rem;
-        }
-        
+
         .main {
-          padding-top: 50px; /* Ajuste para header más pequeño */
+          padding-top: 1rem;
         }
-        
         
         .form-input, .form-button {
           padding: 0.9rem 1rem;
@@ -472,7 +738,7 @@
       /* Todos los móviles (hasta 767px) */
       @media (max-width: 767px) {
         .hero {
-          padding: 1rem;
+          padding: 0.5rem;
         }
         
         /* Formulario optimizado para móviles */
@@ -495,78 +761,84 @@
         .footer-links {
           gap: 1rem;
         }
+        
+        /* Optimizar páginas legales para móviles */
+        .legal-content {
+          padding: 1.5rem;
+        }
+        
+        .legal-page h1 {
+          font-size: 2rem;
+        }
       }
       
       /* Tabletas (768px - 1023px) */
       @media (min-width: 768px) and (max-width: 1023px) {
-        .hero h1 {
-          font-size: 3rem;
-        }
-        
-        .waitlist-form {
-          flex-direction: row;
-        }
-        
-        .form-button {
-          width: auto;
-          white-space: nowrap;
-        }
-        
-        /* Mejora del tamaño de contenedor */
-        .hero, footer {
-          padding-left: 2rem;
-          padding-right: 2rem;
-        }
-      }
+  .hero h1 {
+    font-size: 3rem;
+  }
+  
+  .waitlist-form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-button {
+    width: 100%;
+  }
+  
+  /* Mejora del tamaño de contenedor */
+  .hero, footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
       
       /* Ordenadores (1024px y superior) */
       @media (min-width: 1024px) {
-        .hero h1 {
-          font-size: 3.5rem;
-        }
-        
-        .waitlist-form {
-          flex-direction: row;
-        }
-        
-        .form-button {
-          width: auto;
-          white-space: nowrap;
-        }
-      }
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  
+  .waitlist-form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-button {
+    width: 100%;
+  }
+}
       
       /* Pantallas grandes (1440px y superior) */
-      @media (min-width: 1440px) {
-        .hero h1 {
-          font-size: 4rem;
-        }
-        
-        .hero {
-          max-width: 900px;
-        }
-      }
-      
-      #particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -10;
-  background-color: transparent;
-  pointer-events: none;
+@media (min-width: 1440px) {
+  .hero h1 {
+    font-size: 4rem;
+  }
+  
+  .hero {
+    max-width: 900px;
+  }
+  
+  .waitlist-form {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-button {
+    width: 100%;
+  }
 }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
   <body>
     <div id="particles-js"></div>
     <div class="bg-gradient"></div>
     <div class="bg-gradient-2"></div>
-    
-    <header>
-      <div class="logo">Postify</div>
-      <button class="header-btn">Lista de espera</button>
-    </header>
+    <div class="light-circle light-circle-1"></div>
+    <div class="light-circle light-circle-2"></div>
+    <div class="light-circle light-circle-3"></div>
     
     <main class="main">
       <section class="hero">
@@ -579,365 +851,592 @@
         
         <p>Mejora tu engagement, aumenta seguidores y ahorra tiempo en la gestión de tus redes sociales.</p>
         
-        <form class="waitlist-form">
-          <input type="email" class="form-input" placeholder="Tu correo electrónico" required>
-          <button type="submit" class="form-button">Reservar mi lugar</button>
+        <form id="waitlist-form" class="waitlist-form" action="https://api.postify.es/waitlist" method="POST">
+          <div class="name-fields">
+            <input type="text" id="first-name-input" name="first-name" class="form-input" placeholder="Nombre" required>
+            <input type="text" id="last-name-input" name="last-name" class="form-input" placeholder="Apellidos" required>
+          </div>
+          <input type="email" id="email-input" name="email" class="form-input" placeholder="Tu correo electrónico" required>
+          <button type="submit" id="submit-button" class="form-button">Reservar mi lugar</button>
+          <div id="email-error" class="form-error">Por favor, introduce un email válido.</div>
+          <div id="name-error" class="form-error">Por favor, completa tu nombre y apellidos.</div>
         </form>
         
-        <p class="waitlist-note">¡Plazas limitadas para la primera versión! Regístrate ahora y asegura tu acceso antes de que se agoten. 
-          <br></br>
-          <br> Te avisaremos cuando sea tu turno. </br></p>
+        <!-- Política de privacidad debajo del formulario -->
+        <div class="privacy-checkbox">
+          <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
+          <label for="privacy-consent">
+            He leído y acepto la <a href="#" id="privacy-link" class="privacy-link">política de privacidad</a>.
+          </label>
+        </div>
+        <div id="privacy-error" class="form-error">Debes aceptar la política de privacidad.</div>
+        
+        <p class="waitlist-note">¡Plazas limitadas para la primera versión! Apúntate ahora, asegura tu acceso antes de que se agoten y obtén un <strong>25% de descuento</strong> en el primer mes. <br><br>Te avisaremos cuando sea tu turno.</p>
       </section>
     </main>
     
     <footer>
-      <p>© 2025 Postify. Todos los derechos reservados.</p>
       <div class="footer-links">
-        <a href="#">Aviso legal</a>
-        <a href="#">Política de privacidad</a>
-        <a href="#">Cookies</a>
+        <a href="#" id="legal-link">Aviso legal</a>
+        <a href="#" id="privacy-page-link">Política de privacidad</a>
+        <a href="#" id="cookies-link">Cookies</a>
       </div>
+      <p>© 2025 Postify. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Páginas Legales -->
+    <div id="legal-pages">
+      <!-- Página: Aviso Legal -->
+      <div id="aviso-legal-page" class="legal-page">
+        <div class="legal-header">
+          <h1>Aviso Legal</h1>
+          <button class="close-legal" aria-label="Cerrar">&times;</button>
+        </div>
+        
+        <div class="legal-content">
+          <p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), Postify informa a todos los usuarios del sitio web acerca de las siguientes condiciones de uso.</p>
+      
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">1. Datos identificativos</h2>
+          <p>
+            <strong>Titular:</strong> Postify<br>
+            <strong>Domicilio social:</strong> Agüimes, Las Palmas, España<br>
+            <strong>Email:</strong> info@postify.es<br>
+          </p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">2. Objeto</h2>
+          <p>A través de este sitio web, Postify ofrece información sobre sus servicios y facilita a los usuarios el acceso a una plataforma para la creación, automatización y optimización de contenido para redes sociales mediante inteligencia artificial.</p>
+          <p>Las presentes condiciones tienen como objeto regular el acceso, navegación y uso del sitio web, así como las responsabilidades derivadas de la utilización de sus contenidos.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">3. Condiciones de acceso y uso</h2>
+          <p>El acceso a este sitio web es responsabilidad exclusiva de los usuarios. El acceso a este sitio web no supone entablar ningún tipo de relación comercial entre Postify y el usuario.</p>
+          <p>El usuario se compromete a utilizar el sitio web, sus servicios y contenidos sin contravenir la legislación vigente, la buena fe, los usos generalmente aceptados y el orden público.</p>
+          <p>Queda prohibido el uso del sitio con fines ilícitos o lesivos contra Postify o cualquier tercero, o que puedan causar perjuicio o impedir el normal funcionamiento del sitio web.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">4. Propiedad intelectual e industrial</h2>
+          <p>Todos los contenidos del sitio web, incluyendo a título enunciativo pero no limitativo, las imágenes, sonidos, vídeos, diseños gráficos, marcas, logotipos, combinaciones de colores, estructura, diseño, selección de materiales usados, programas necesarios para su funcionamiento, acceso y uso, etc., están sujetos a derechos de propiedad intelectual e industrial de los que Postify es titular o legítimo licenciatario.</p>
+          <p>Cualquier uso, reproducción, distribución, comunicación pública, transformación o cualquier otra actividad similar o análoga sobre los contenidos del sitio web queda totalmente prohibida salvo que cuente con autorización expresa de Postify.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">5. Exclusión de garantías y responsabilidad</h2>
+          <p>Postify no garantiza la disponibilidad y continuidad del funcionamiento del sitio web. Asimismo, Postify no será en ningún caso responsable por los daños y perjuicios de cualquier naturaleza que puedan deberse a la falta de disponibilidad o de continuidad del funcionamiento del sitio web.</p>
+          <p>Postify no garantiza la utilidad del sitio web para actividades específicas. Postify no será responsable por los daños y perjuicios de toda naturaleza que puedan deberse a la falta de utilidad del sitio web para realizar determinadas actividades.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">6. Enlaces (links)</h2>
+          <p>En caso de que en el sitio web se incluyan enlaces o hipervínculos hacia otros sitios de Internet, Postify no ejercerá ningún control sobre dichos sitios y contenidos. En ningún caso Postify asumirá responsabilidad alguna por los contenidos de algún enlace perteneciente a un sitio web ajeno, ni garantizará la disponibilidad técnica, calidad, fiabilidad, exactitud, amplitud, veracidad, validez y constitucionalidad de cualquier material o información contenida en dichos hipervínculos.</p>
+    
+        </div>
+      </div>
+      
+      <!-- Página: Política de privacidad -->
+      <div id="privacidad-page" class="legal-page">
+        <div class="legal-header">
+          <h1>Política de Privacidad</h1>
+          <button class="close-legal" aria-label="Cerrar">&times;</button>
+        </div>
+        
+        <div class="legal-content">
+          <p>En Postify nos comprometemos a proteger la privacidad y los datos personales de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información personal que nos proporcionas, en cumplimiento con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).</p>
+      
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">1. Responsable del tratamiento</h2>
+          <p>
+            <strong>Identidad:</strong> Postify<br>
+            <strong>Dirección postal:</strong> Agüimes, Las Palmas, España<br>
+            <strong>Email:</strong> info@postify.es<br>
+          </p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">2. Finalidades del tratamiento</h2>
+          <p>Tratamos los datos personales que nos facilitas con las siguientes finalidades:</p>
+          <ul style="padding-left: 1.5rem; margin-bottom: 1.2rem; color: var(--text-secondary);">
+            <li>Gestionar tu registro en la lista de espera de Postify.</li>
+            <li>Enviarte comunicaciones sobre el lanzamiento de nuestra plataforma.</li>
+            <li>Informarte sobre promociones, descuentos y otras ventajas exclusivas.</li>
+            <li>Analizar y mejorar nuestros servicios, realizando estudios estadísticos sobre el uso de la plataforma.</li>
+            <li>Atender y gestionar las solicitudes de información, consultas o reclamaciones.</li>
+          </ul>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">3. Legitimación</h2>
+          <p>La base legal para el tratamiento de tus datos es:</p>
+          <ul style="padding-left: 1.5rem; margin-bottom: 1.2rem; color: var(--text-secondary);">
+            <li>El consentimiento que nos otorgas al facilitar tus datos y marcar las casillas de aceptación correspondientes.</li>
+            <li>El interés legítimo en mantener informados a nuestros usuarios sobre nuestros servicios, siempre que hayan mostrado un interés previo.</li>
+            <li>El cumplimiento de obligaciones legales aplicables a Postify.</li>
+          </ul>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">4. Conservación de los datos</h2>
+          <p>Conservaremos tus datos personales mientras mantengas tu condición de usuario de Postify, mientras no solicites su supresión, y durante el tiempo necesario para cumplir con las obligaciones legales aplicables.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">5. Destinatarios de los datos</h2>
+          <p>Tus datos podrán ser comunicados a:</p>
+          <ul style="padding-left: 1.5rem; margin-bottom: 1.2rem; color: var(--text-secondary);">
+            <li>Proveedores de servicios tecnológicos necesarios para la prestación de nuestros servicios (almacenamiento en la nube, envío de comunicaciones electrónicas, etc.).</li>
+            <li>Administraciones Públicas en los casos previstos por la Ley.</li>
+            <li>Jueces y Tribunales en caso de requerimiento legal.</li>
+          </ul>
+          <p>No realizamos transferencias internacionales de datos fuera del Espacio Económico Europeo (EEE), salvo que sea necesario para la prestación de los servicios, en cuyo caso se adoptarán las garantías adecuadas.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">6. Derechos</h2>
+          <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad sobre tus datos personales enviando un email a info@postify.es adjuntando copia de tu DNI o documento equivalente.</p>
+          <p>También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es) si consideras que el tratamiento no se ajusta a la normativa vigente.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">7. Medidas de seguridad</h2>
+          <p>Postify ha adoptado todas las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">8. Modificaciones</h2>
+          <p>Postify se reserva el derecho a modificar la presente política de privacidad para adaptarla a novedades legislativas o jurisprudenciales, así como a prácticas de la industria. En dichos supuestos, Postify anunciará en esta página los cambios introducidos con razonable antelación a su puesta en práctica.</p>
+          
+        </div>
+      </div>
+      
+      <!-- Página: Política de cookies -->
+      <div id="cookies-page" class="legal-page">
+        <div class="legal-header">
+          <h1>Política de Cookies</h1>
+          <button class="close-legal" aria-label="Cerrar">&times;</button>
+        </div>
+        
+        <div class="legal-content">
+          <p>En Postify utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación, analizar el tráfico en nuestra web y mostrarte contenido personalizado. A continuación, te informamos detalladamente sobre qué son las cookies, qué tipos utilizamos, cómo puedes administrarlas y cómo ejercer tus preferencias.</p>
+      
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">1. ¿Qué son las cookies?</h2>
+          <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, tablet, smartphone) cuando visitas sitios web. Estos archivos almacenan información sobre tu navegación en el sitio y permiten reconocerte en futuras visitas, recordar tus preferencias y ofrecerte una experiencia más personalizada.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">2. Tipos de cookies que utilizamos</h2>
+          
+          <h3 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--accent); font-size: 1.1rem;">2.1. Según la entidad que las gestione</h3>
+          <p><strong>Cookies propias:</strong> Son aquellas que se envían a tu dispositivo desde nuestros propios servidores.</p>
+          <p><strong>Cookies de terceros:</strong> Son aquellas que se envían a tu dispositivo desde un servidor gestionado por un tercero (por ejemplo, Google Analytics, Facebook, etc.).</p>
+          
+          <h3 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--accent); font-size: 1.1rem;">2.2. Según su finalidad</h3>
+          <p><strong>Cookies técnicas:</strong> Son necesarias para el funcionamiento del sitio web y la prestación de los servicios. Por ejemplo, permiten identificar la sesión del usuario, acceder a partes de acceso restringido, etc.</p>
+          <p><strong>Cookies de preferencias o personalización:</strong> Permiten recordar información para que el usuario acceda al servicio con determinadas características que pueden diferenciar su experiencia de la de otros usuarios.</p>
+          <p><strong>Cookies de análisis o medición:</strong> Permiten el seguimiento y análisis del comportamiento de los usuarios en el sitio web para la elaboración de perfiles de navegación, con el fin de introducir mejoras en función del análisis de los datos de uso.</p>
+          <p><strong>Cookies de publicidad comportamental:</strong> Almacenan información del comportamiento de los usuarios para mostrar publicidad personalizada.</p>
+          
+          <h3 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--accent); font-size: 1.1rem;">2.3. Según su duración</h3>
+          <p><strong>Cookies de sesión:</strong> Diseñadas para recabar y almacenar datos mientras el usuario accede a la web. Desaparecen al cerrar el navegador.</p>
+          <p><strong>Cookies persistentes:</strong> Los datos se almacenan en el terminal y pueden ser accedidos durante un periodo definido por el responsable de la cookie.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">3. Detalle de cookies utilizadas</h2>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; color: var(--text-secondary);">
+            <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+              <th style="text-align: left; padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">Nombre</th>
+              <th style="text-align: left; padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">Proveedor</th>
+              <th style="text-align: left; padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">Finalidad</th>
+              <th style="text-align: left; padding: 0.8rem 0.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">Duración</th>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+              <td style="padding: 0.8rem 0.5rem;">_ga</td>
+              <td style="padding: 0.8rem 0.5rem;">Google Analytics</td>
+              <td style="padding: 0.8rem 0.5rem;">Analítica. Distingue usuarios únicos.</td>
+              <td style="padding: 0.8rem 0.5rem;">2 años</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+              <td style="padding: 0.8rem 0.5rem;">_gid</td>
+              <td style="padding: 0.8rem 0.5rem;">Google Analytics</td>
+              <td style="padding: 0.8rem 0.5rem;">Analítica. Distingue usuarios.</td>
+              <td style="padding: 0.8rem 0.5rem;">24 horas</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+              <td style="padding: 0.8rem 0.5rem;">_gat</td>
+              <td style="padding: 0.8rem 0.5rem;">Google Analytics</td>
+              <td style="padding: 0.8rem 0.5rem;">Analítica. Limita la tasa de solicitudes.</td>
+              <td style="padding: 0.8rem 0.5rem;">1 minuto</td>
+            </tr>
+          </table>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">4. Cómo gestionar las cookies</h2>
+          <p>Puedes permitir, bloquear o eliminar las cookies instaladas en tu dispositivo a través de la configuración de las opciones de tu navegador. A continuación, te facilitamos los enlaces a las instrucciones de los navegadores más populares:</p>
+          <ul style="padding-left: 1.5rem; margin-bottom: 1.2rem; color: var(--text-secondary);">
+            <li>Google Chrome: <a href="https://support.google.com/chrome/answer/95647" target="_blank" style="color: var(--accent); text-decoration: none;">Configuración de cookies</a></li>
+            <li>Mozilla Firefox: <a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" style="color: var(--accent); text-decoration: none;">Configuración de cookies</a></li>
+            <li>Safari: <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" style="color: var(--accent); text-decoration: none;">Configuración de cookies</a></li>
+            <li>Microsoft Edge: <a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" style="color: var(--accent); text-decoration: none;">Configuración de cookies</a></li>
+          </ul>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">5. Actualizaciones y cambios en la política de cookies</h2>
+          <p>Postify puede modificar esta Política de Cookies en función de nuevas exigencias legislativas, reglamentarias, o con la finalidad de adaptar dicha política a las instrucciones dictadas por la Agencia Española de Protección de Datos.</p>
+          <p>Se recomienda a los usuarios que visiten periódicamente esta página para conocer los cambios sufridos en la misma.</p>
+          
+          <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--accent);">6. Contacto</h2>
+          <p>Si tienes cualquier duda, comentario o sugerencia sobre la Política de Cookies, puedes dirigirte a nosotros a través del correo electrónico info@postify.es.</p>
+          
+        </div>
+      </div>
+    </div>
+    
+    <!-- Plantilla para notificaciones -->
+    <div id="notification-template" class="notification" style="display: none;">
+      <div class="notification-icon"></div>
+      <h3></h3>
+      <p></p>
+    </div>
+
+    <!-- Scripts optimizados -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Detectar si es móvil para optimizar rendimiento
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        // Contador de plazas disponibles animado
-        const initSpots = 100;
-        const takenSpots = 89;
-        const availableSpots = initSpots - takenSpots;
-        
-        const spotsElement = document.getElementById('available-spots');
-        if (spotsElement) {
-          spotsElement.textContent = availableSpots;
-          
-          // Intervalo más largo para móviles para ahorrar recursos
-          const interval = isMobile ? 30000 : 15000;
-          
-          // Reducir aleatoriamente los lugares disponibles
-          window.spotsUpdateInterval = setInterval(() => {
-            const currentSpots = parseInt(spotsElement.textContent);
-            if (currentSpots > 1) {
-              const randomChance = Math.random();
-              if (randomChance > 0.8) {
-                spotsElement.textContent = currentSpots - 1;
-                
-                // Animar el cambio
-                spotsElement.style.transition = 'all 0.3s ease';
-                spotsElement.style.color = '#ff3b30';
-                spotsElement.style.transform = 'scale(1.2)';
-                
-                // Actualizar barra de progreso
-                const progress = document.querySelector('.spots-progress');
-                const newWidth = ((initSpots - (currentSpots - 1)) / initSpots) * 100;
-                progress.style.width = newWidth + '%';
-                
-                setTimeout(() => {
-                  spotsElement.style.color = '#ffcc00';
-                  spotsElement.style.transform = '';
-                }, 1000);
-              }
-            }
-          }, interval);
-        }
-        
-        // Hacer scroll hacia el formulario al hacer clic en el botón del header
-        const headerBtn = document.querySelector('.header-btn');
-        const waitlistForm = document.querySelector('.waitlist-form');
-        
-        if (headerBtn && waitlistForm) {
-          headerBtn.addEventListener('click', function() {
-            waitlistForm.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-              // Enfocar el input después del scroll
-              const emailInput = waitlistForm.querySelector('input[type="email"]');
-              if (emailInput) emailInput.focus();
-            }, 800);
-          });
-        }
-        
-        // Manejar envío del formulario
-// Manejar envío del formulario
-const form = document.querySelector('.waitlist-form');
-if (form) {
-  form.addEventListener('submit', function(e) {
-    // Prevenir el comportamiento predeterminado (recargar la página)
-    e.preventDefault();
-    
-    const emailInput = form.querySelector('input[type="email"]');
-    const emailValue = emailInput ? emailInput.value.trim() : '';
-    
-    if (emailValue && isValidEmail(emailValue)) {
-      // Mostrar notificación de éxito
-      showNotification('¡Genial! Te has unido a la lista de espera', 'Te notificaremos cuando sea tu turno para acceder a Postify.');
+document.addEventListener('DOMContentLoaded', function() {
+  // Inicializar Supabase - REEMPLAZA ESTOS VALORES con tus credenciales reales
+  const supabaseUrl ='https://lmhjnmacadcqvckwymck.supabase.co';;
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtaGpubWFjYWRjcXZja3d5bWNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4NzYyNzUsImV4cCI6MjA2MTQ1MjI3NX0.j4oAZIUYrdX3lMfcT6DBMxATifWa-sTwxxdAc-CW3-c';
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+  
+  // Referencias a elementos del DOM
+  const form = document.getElementById('waitlist-form');
+  const firstNameInput = document.getElementById('first-name-input');
+  const lastNameInput = document.getElementById('last-name-input');
+  const emailInput = document.getElementById('email-input');
+  const submitButton = document.getElementById('submit-button');
+  const privacyCheckbox = document.getElementById('privacy-consent');
+  const emailError = document.getElementById('email-error');
+  const nameError = document.getElementById('name-error');
+  const privacyError = document.getElementById('privacy-error');
+  const privacyLink = document.getElementById('privacy-link');
+  const legalLink = document.getElementById('legal-link');
+  const privacyPageLink = document.getElementById('privacy-page-link');
+  const cookiesLink = document.getElementById('cookies-link');
+  const closeButtons = document.querySelectorAll('.close-legal');
+  const backButtons = document.querySelectorAll('.back-button');
+  
+  // Configurar la validación del formulario
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
       
-      // Limpiar el formulario
-      if (emailInput) emailInput.value = '';
+      // Obtener valores
+      const firstNameValue = firstNameInput.value.trim();
+      const lastNameValue = lastNameInput.value.trim();
+      const emailValue = emailInput.value.trim();
       
-      // Simulación de reducción de plazas disponibles
-      const spotsElement = document.getElementById('available-spots');
-      if (spotsElement) {
-        const currentSpots = parseInt(spotsElement.textContent);
-        if (currentSpots > 1) {
-          spotsElement.textContent = currentSpots - 1;
-          
-          // Actualizar barra de progreso
-          const progress = document.querySelector('.spots-progress');
-          const initSpots = 100;
-          const newWidth = ((initSpots - (currentSpots - 1)) / initSpots) * 100;
-          progress.style.width = newWidth + '%';
-        }
+      // Validar que los campos no estén vacíos
+      if (!firstNameValue || !lastNameValue) {
+        showError(nameError);
+        return false;
+      } else {
+        hideError(nameError);
       }
+      
+      // Validar email
+      const isValidEmailFormat = validateEmail(emailValue);
+      if (!isValidEmailFormat) {
+        showError(emailError);
+        return false;
+      } else {
+        hideError(emailError);
+      }
+      
+      // Validar checkbox de privacidad
+      if (!privacyCheckbox.checked) {
+        showError(privacyError);
+        return false;
+      } else {
+        hideError(privacyError);
+      }
+      
+      // Si todo es válido, enviar a Supabase
+      submitToSupabase(firstNameValue, lastNameValue, emailValue);
+    });
+  }
+  
+  // Función para validar email
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+  
+  // Funciones para mostrar y ocultar errores
+  function showError(errorElement) {
+    errorElement.style.display = 'block';
+  }
+  
+  function hideError(errorElement) {
+    errorElement.style.display = 'none';
+  }
+  
+  // Función para enviar a Supabase
+  async function submitToSupabase(firstName, lastName, email) {
+    // Desactivar el botón para evitar múltiples envíos
+    submitButton.disabled = true;
+    
+    try {
+      // Enviar datos a Supabase
+      const { data, error } = await supabaseClient
+        .from('waitlist')
+        .insert([
+          { 
+            first_name: firstName,
+            last_name: lastName,
+            email: email 
+          }
+        ]);
+      
+      if (error) {
+        // Si hay un error (como email duplicado)
+        console.error('Error:', error);
+        
+        if (error.code === '23505') {
+          showNotification('Email ya registrado', 'Este email ya está en nuestra lista de espera.', 'error');
+        } else {
+          showNotification('Ha ocurrido un error', 'Por favor, inténtalo de nuevo más tarde.', 'error');
+        }
+      } else {
+        // Si todo va bien
+        showNotification('¡Genial! Te has unido a la lista de espera', 'Te notificaremos cuando sea tu turno para acceder a Postify.', 'success');
+        form.reset(); // Limpiar el formulario
+      }
+    } catch (err) {
+      console.error('Error de conexión:', err);
+      showNotification('Error de conexión', 'No se ha podido conectar con el servidor.', 'error');
+    } finally {
+      // Reactivar el botón
+      submitButton.disabled = false;
+    }
+  }
+  
+  // Función para mostrar notificaciones
+  function showNotification(title, message, type = 'success') {
+    // Detectar si es móvil para ajustes específicos
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Clonar la plantilla de notificación
+    const template = document.getElementById('notification-template');
+    const notification = template.cloneNode(true);
+    notification.removeAttribute('id');
+    notification.style.display = 'block';
+    
+    // Añadir clase según el tipo
+    notification.classList.add(type);
+    
+    // Configurar el icono
+    const iconSvgSize = isMobile ? '24px' : '28px';
+    const iconContainer = notification.querySelector('.notification-icon');
+    
+    if (type === 'success') {
+      iconContainer.innerHTML = `
+        <svg width="${iconSvgSize}" height="${iconSvgSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6L9 17L4 12"></path>
+        </svg>
+      `;
     } else {
-      // Mostrar notificación de error
-      showNotification('Error', 'Por favor, introduce un email válido.', 'error');
+      iconContainer.innerHTML = `
+        <svg width="${iconSvgSize}" height="${iconSvgSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      `;
     }
     
-    // Asegurar que no se envíe el formulario
-    return false;
+    // Configurar el texto
+    notification.querySelector('h3').textContent = title;
+    notification.querySelector('p').textContent = message;
+    
+    // Eliminar cualquier notificación anterior
+    const existingNotification = document.querySelector('.notification.show');
+    if (existingNotification && existingNotification !== notification) {
+      existingNotification.remove();
+    }
+    
+    // Añadir al DOM
+    document.body.appendChild(notification);
+    
+    // Forzar reflow para la animación
+    void notification.offsetWidth;
+    
+    // Animar entrada
+    notification.classList.add('show');
+    
+    // Animar salida después de 3 segundos
+    setTimeout(() => {
+      notification.classList.remove('show');
+      
+      // Eliminar del DOM después de la animación
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 3000);
+  }
+  
+  // Manejar click en el enlace de política de privacidad
+  if (privacyLink) {
+    privacyLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      showLegalPage('privacidad-page');
+    });
+  }
+  
+  // Manejar click en los enlaces del footer
+  if (legalLink) {
+    legalLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      showLegalPage('aviso-legal-page');
+    });
+  }
+  
+  if (privacyPageLink) {
+    privacyPageLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      showLegalPage('privacidad-page');
+    });
+  }
+  
+  if (cookiesLink) {
+    cookiesLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      showLegalPage('cookies-page');
+    });
+  }
+  
+  // Configurar eventos para los botones de cerrar páginas legales
+  closeButtons.forEach(function(button) {
+    button.addEventListener('click', hideLegalPage);
   });
-}
+  
+  backButtons.forEach(function(button) {
+    button.addEventListener('click', hideLegalPage);
+  });
+  
+  // Función para mostrar página legal
+  function showLegalPage(pageId) {
+    // Ocultar todas las páginas legales primero
+    document.querySelectorAll('.legal-page').forEach(page => {
+      page.style.display = 'none';
+    });
+    
+    // Mostrar el contenedor de páginas legales
+    document.getElementById('legal-pages').style.display = 'block';
+    
+    // Bloquear el scroll en la página principal
+    document.body.style.overflow = 'hidden';
+    
+    // Mostrar la página específica
+    document.getElementById(pageId).style.display = 'block';
+    
+    // Desplazarse al inicio de la página
+    window.scrollTo(0, 0);
+  }
+  
+  // Función para ocultar páginas legales
+  function hideLegalPage() {
+    // Ocultar el contenedor principal de páginas legales
+    document.getElementById('legal-pages').style.display = 'none';
+    
+    // Desbloquear el scroll de la página principal
+    document.body.style.overflow = 'auto';
+    
+    // Forzar al navegador a volver al inicio
+    window.scrollTo(0, 0);
+  }
+});
+    </script>
+    
+    <!-- Script para partículas de fondo - carga condicional -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Detectar si es móvil para optimizar el rendimiento
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Función para validar email
-        function isValidEmail(email) {
-          const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          return regex.test(email);
+        // Solo cargar partículas si no es un dispositivo móvil o es un dispositivo de gama alta
+        if (!isMobile || (window.devicePixelRatio >= 2 && navigator.hardwareConcurrency > 4)) {
+          loadParticles();
         }
         
-        // Función para mostrar notificaciones centradas optimizadas para móviles
-        function showNotification(title, message, type = 'success') {
-          // Detectar si es móvil para ajustes específicos
-          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        function loadParticles() {
+          const particleCount = isMobile ? 30 : 80;
+          const particleSpeed = isMobile ? 0.5 : 1;
           
-          // Crear el contenedor principal
-          const notification = document.createElement('div');
-          notification.style.position = 'fixed';
-          notification.style.top = '50%';
-          notification.style.left = '50%';
-          notification.style.transform = 'translate(-50%, -50%) scale(0.9)';
-          notification.style.opacity = '0';
-          notification.style.width = isMobile ? '85%' : '90%';
-          notification.style.maxWidth = '360px';
-          notification.style.backgroundColor = '#1a1a1a';
-          notification.style.borderRadius = '12px';
-          notification.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.5)';
-          notification.style.padding = isMobile ? '20px' : '24px';
-          notification.style.textAlign = 'center';
-          notification.style.zIndex = '9999';
-          notification.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          notification.style.border = type === 'success' ? '1px solid rgba(0, 122, 255, 0.3)' : '1px solid rgba(255, 59, 48, 0.3)';
-          
-          // Agregar -webkit-transform para compatibilidad con Safari móvil
-          notification.style.webkitTransform = 'translate(-50%, -50%) scale(0.9)';
-          notification.style.webkitTransition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          
-          // Tamaño de icono adaptado para móviles
-          const iconSize = isMobile ? '50px' : '60px';
-          const iconSvgSize = isMobile ? '24px' : '28px';
-          
-          // Crear icono
-          const icon = document.createElement('div');
-          icon.style.width = iconSize;
-          icon.style.height = iconSize;
-          icon.style.borderRadius = '50%';
-          icon.style.background = type === 'success' ? 'linear-gradient(45deg, #007aff, #5856d6)' : 'linear-gradient(45deg, #ff3b30, #ff9500)';
-          icon.style.margin = '0 auto 16px';
-          icon.style.display = 'flex';
-          icon.style.alignItems = 'center';
-          icon.style.justifyContent = 'center';
-          icon.style.boxShadow = type === 'success' ? '0 8px 20px rgba(0, 122, 255, 0.3)' : '0 8px 20px rgba(255, 59, 48, 0.3)';
-          
-          // Contenido del icono
-          if (type === 'success') {
-  icon.innerHTML = `
-    <svg width="${iconSvgSize}" height="${iconSvgSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20 6L9 17L4 12"></path>
-    </svg>
-  `;
-} else {
-  icon.innerHTML = `
-    <svg width="${iconSvgSize}" height="${iconSvgSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  `;
-}
-          
-          // Titulo con tamaño adaptado
-          const titleEl = document.createElement('h3');
-          titleEl.textContent = title;
-          titleEl.style.color = '#ffffff';
-          titleEl.style.margin = '0 0 8px';
-          titleEl.style.fontSize = isMobile ? '18px' : '20px';
-          titleEl.style.fontWeight = '700';
-          titleEl.style.lineHeight = '1.3';
-          titleEl.style.padding = '0 10px';
-          
-          // Mensaje con tamaño adaptado
-          const messageEl = document.createElement('p');
-          messageEl.textContent = message;
-          messageEl.style.color = '#d0d0d0';
-          messageEl.style.margin = '0';
-          messageEl.style.fontSize = isMobile ? '14px' : '16px';
-          messageEl.style.lineHeight = '1.5';
-          messageEl.style.padding = '0 5px';
-          
-          // Construir la notificación
-          notification.appendChild(icon);
-          notification.appendChild(titleEl);
-          notification.appendChild(messageEl);
-          
-          // Eliminar cualquier notificación anterior si existe
-          const existingNotification = document.querySelector('.app-notification');
-          if (existingNotification) {
-            existingNotification.remove();
-          }
-          
-          // Agregar clase para identificación
-          notification.classList.add('app-notification');
-          
-          // Añadir al DOM
-          document.body.appendChild(notification);
-          
-          // Fix para iOS: forzar reflow
-          void notification.offsetWidth;
-          
-          // Animar entrada
-          setTimeout(() => {
-            notification.style.opacity = '1';
-            notification.style.transform = 'translate(-50%, -50%) scale(1)';
-            notification.style.webkitTransform = 'translate(-50%, -50%) scale(1)';
-          }, 10);
-          
-          // Animar salida después de 4 segundos
-          setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translate(-50%, -50%) scale(0.9)';
-            notification.style.webkitTransform = 'translate(-50%, -50%) scale(0.9)';
-            
-            // Eliminar del DOM después de la animación
-            setTimeout(() => {
-              notification.remove();
-            }, 300);
-          }, 4000);
-        }
-        
-        // Optimizaciones para dispositivos móviles
-        if (isMobile) {
-          // Mejorar rendimiento en eventos táctiles
-          document.addEventListener('touchstart', function() {}, {passive: true});
-          
-          // Arreglar problemas de enfoque doble en iOS
-          document.querySelectorAll('input, button').forEach(el => {
-            el.addEventListener('touchend', function(e) {
-              e.preventDefault();
-              this.focus();
-            });
-          });
+          // Cargar el script de particles.js
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+          script.onload = function() {
+            // Comprobar si el elemento particles-js existe antes de configurar
+            const particlesContainer = document.getElementById('particles-js');
+            if (particlesContainer && window.particlesJS) {
+              // Configurar las partículas una vez cargado el script
+              particlesJS('particles-js', {
+                "particles": {
+                  "number": {
+                    "value": particleCount,
+                    "density": {
+                      "enable": true,
+                      "value_area": 800
+                    }
+                  },
+                  "color": {
+                    "value": "#ffffff"
+                  },
+                  "shape": {
+                    "type": "circle",
+                    "stroke": {
+                      "width": 0,
+                      "color": "#000000"
+                    }
+                  },
+                  "opacity": {
+                    "value": 0.08,
+                    "random": true,
+                    "anim": {
+                      "enable": true,
+                      "speed": 1,
+                      "opacity_min": 0.03,
+                      "sync": false
+                    }
+                  },
+                  "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                      "enable": true,
+                      "speed": 2,
+                      "size_min": 0.1,
+                      "sync": false
+                    }
+                  },
+                  "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.08,
+                    "width": 1
+                  },
+                  "move": {
+                    "enable": true,
+                    "speed": particleSpeed,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                  }
+                },
+                "interactivity": {
+                  "detect_on": "canvas",
+                  "events": {
+                    "onhover": {
+                      "enable": true,
+                      "mode": "grab"
+                    },
+                    "onclick": {
+                      "enable": true,
+                      "mode": "push"
+                    },
+                    "resize": true
+                  },
+                  "modes": {
+                    "grab": {
+                      "distance": 140,
+                      "line_linked": {
+                        "opacity": 0.3
+                      }
+                    },
+                    "push": {
+                      "particles_nb": 4
+                    }
+                  }
+                },
+                "retina_detect": true
+              });
+            }
+          };
+          document.body.appendChild(script);
         }
       });
     </script>
-    <!-- Script para partículas de fondo -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Detectar si es móvil para optimizar el rendimiento
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const particleCount = isMobile ? 30 : 80;
-    const particleSpeed = isMobile ? 0.5 : 1;
-    
-    // Cargar el script de particles.js
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-    script.onload = function() {
-      // Configurar las partículas una vez cargado el script
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": particleCount,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": "#ffffff"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            }
-          },
-          "opacity": {
-            "value": 0.08,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 1,
-              "opacity_min": 0.03,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 2,
-              "size_min": 0.1,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#ffffff",
-            "opacity": 0.08,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": particleSpeed,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false
-          }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "grab"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "grab": {
-              "distance": 140,
-              "line_linked": {
-                "opacity": 0.3
-              }
-            },
-            "push": {
-              "particles_nb": 4
-            }
-          }
-        },
-        "retina_detect": true
-      });
-    };
-    document.body.appendChild(script);
-  });
-</script>
   </body>
 </html>
