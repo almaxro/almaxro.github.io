@@ -837,8 +837,6 @@
     <div class="bg-gradient"></div>
     <div class="bg-gradient-2"></div>
     <div class="light-circle light-circle-1"></div>
-    <div class="light-circle light-circle-2"></div>
-    <div class="light-circle light-circle-3"></div>
     
     <main class="main">
       <section class="hero">
@@ -871,17 +869,18 @@
         </div>
         <div id="privacy-error" class="form-error">Debes aceptar la política de privacidad.</div>
         
-        <p class="waitlist-note">¡Plazas limitadas para la primera versión! Apúntate ahora, asegura tu acceso antes de que se agoten y obtén un <strong>25% de descuento</strong> en el primer mes. <br><br>Te avisaremos cuando sea tu turno.</p>
+        <p class="waitlist-note">¡Acceso exclusivo a la primera versión!
+          Las plazas son limitadas, así que reserva la tuya hoy y disfruta de un <strong>25% de descuento</strong>  en tu primer mes. ¡No te quedes fuera! <br><br>Te avisaremos cuando sea tu turno.</p>
       </section>
     </main>
     
     <footer>
+      <p>© 2025 Postify. Todos los derechos reservados.</p>
       <div class="footer-links">
         <a href="#" id="legal-link">Aviso legal</a>
         <a href="#" id="privacy-page-link">Política de privacidad</a>
         <a href="#" id="cookies-link">Cookies</a>
       </div>
-      <p>© 2025 Postify. Todos los derechos reservados.</p>
     </footer>
 
     <!-- Páginas Legales -->
@@ -1332,10 +1331,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Detectar si es móvil para optimizar el rendimiento
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Solo cargar partículas si no es un dispositivo móvil o es un dispositivo de gama alta
-        if (!isMobile || (window.devicePixelRatio >= 2 && navigator.hardwareConcurrency > 4)) {
-          loadParticles();
-        }
+        loadParticles();
         
         function loadParticles() {
           const particleCount = isMobile ? 30 : 80;
