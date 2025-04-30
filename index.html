@@ -24,7 +24,7 @@
         --blur-bg: rgba(255, 255, 255, 0.05);
         --gradient: linear-gradient(90deg, #7ab6ff, #b58eff, #ffaecf);
         --text-gradient: linear-gradient(90deg, #f4f4f4, #b0b0b0);
-        --card-bg: rgba(26, 26, 26, 0.4);
+        --card-bg: rgba(26, 26, 26, 1);
         --shadow: 0 2px 5px rgba(0,0,0,0.3);
         --radius: 1rem;
         --transition-normal: all 0.3s ease;
@@ -360,18 +360,29 @@
       
       /* Mensaje de error en el formulario */
       .form-error {
-        color: #ff3b30;
-        font-size: 0.85rem;
-        text-align: left;
-        margin-top: 0.5rem;
-        animation: fadeIn 0.3s ease;
-        display: none;
-      }
-      
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
+  color: #ff3b30;
+  font-size: 0.9rem; /* Ligeramente más grande */
+  font-weight: 500; /* Un poco más grueso */
+  text-align: left;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.5rem; /* Añadir padding */
+  background-color: rgba(255, 59, 48, 1); /* Fondo sutilmente rojo */
+  border-left: 3px solid #ff3b30; /* Borde izquierdo para destacar */
+  border-radius: 4px; /* Esquinas redondeadas */
+  animation: fadeInError 0.3s ease;
+  display: none;
+}
+
+@keyframes fadeInError {
+  from { 
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
       .waitlist-note {
         font-size: 0.85rem;
@@ -1141,44 +1152,47 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Función para enviar a Supabase
-  async function submitToSupabase(firstName, lastName, email) {
-    // Desactivar el botón para evitar múltiples envíos
-    submitButton.disabled = true;
+// Función corregida para insertar datos en waitlist
+async function submitToSupabase(firstName, lastName, email) {
+  // Desactivar el botón para evitar múltiples envíos
+  submitButton.disabled = true;
+  
+  try {
+    console.log('Enviando datos a Supabase...');
+    console.log('Datos:', { firstName, lastName, email });
     
-    try {
-      // Enviar datos a Supabase
-      const { data, error } = await supabaseClient
-        .from('waitlist')
-        .insert([
-          { 
-            first_name: firstName,
-            last_name: lastName,
-            email: email 
-          }
-        ]);
-      
-      if (error) {
-        // Si hay un error (como email duplicado)
-        console.error('Error:', error);
-        
-        if (error.code === '23505') {
-          showNotification('Email ya registrado', 'Este email ya está en nuestra lista de espera.', 'error');
-        } else {
-          showNotification('Ha ocurrido un error', 'Por favor, inténtalo de nuevo más tarde.', 'error');
+    // Enviar datos a Supabase con el nombre de tabla correcto
+    const { data, error } = await supabaseClient
+      .from('waitlist')  // IMPORTANTE: Usando 'waitlist' en lugar de 'postify_waitlist'
+      .insert([
+        { 
+          first_name: firstName,
+          last_name: lastName,
+          email: email 
         }
+      ]);
+    
+    if (error) {
+      console.error('Error completo:', error);
+      
+      if (error.code === '23505') {
+        showNotification('Email ya registrado', 'Este email ya está en nuestra lista de espera.', 'error');
       } else {
-        // Si todo va bien
-        showNotification('¡Genial! Te has unido a la lista de espera', 'Te notificaremos cuando sea tu turno para acceder a Postify.', 'success');
-        form.reset(); // Limpiar el formulario
+        showNotification('Ha ocurrido un error', 'Por favor, inténtalo de nuevo más tarde: ' + error.message, 'error');
       }
-    } catch (err) {
-      console.error('Error de conexión:', err);
-      showNotification('Error de conexión', 'No se ha podido conectar con el servidor.', 'error');
-    } finally {
-      // Reactivar el botón
-      submitButton.disabled = false;
+    } else {
+      console.log('Inserción exitosa:', data);
+      showNotification('¡Genial! Te has unido a la lista de espera', 'Te notificaremos cuando sea tu turno para acceder a Postify.', 'success');
+      form.reset(); // Limpiar el formulario
     }
+  } catch (err) {
+    console.error('Error de conexión:', err);
+    showNotification('Error de conexión', 'No se ha podido conectar con el servidor.', 'error');
+  } finally {
+    // Reactivar el botón
+    submitButton.disabled = false;
   }
+}
   
   // Función para mostrar notificaciones
   function showNotification(title, message, type = 'success') {
